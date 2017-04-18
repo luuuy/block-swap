@@ -10,3 +10,11 @@
 .game{
 	width: 650px;
 }
+
+.img{
+	width: 300px;
+	float: right;
+}
+.info{
+	float: right;
+}
