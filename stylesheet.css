@@ -1,10 +1,12 @@
 .block {
-	height: 100px;
-	width: 100px;
-	margin: 5px;
+	height: 200px;
+	width: 200px;
+	margin: 1px;
 	position: relative;
 	float: left;
+	background-size: auto 100%;
+	background-position: 50% 50%;
 }
 .game{
-	width: 350px;
+	width: 650px;
 }
