@@ -1,6 +1,7 @@
+//資料
 var data = [
 	 {
-		bg:"0.jpg", //empty
+		bg:"0.jpg",
 		"id" : "d0",
 		position :0
 	},
@@ -46,6 +47,7 @@ var data = [
 	}
 ]
 
+//空格的位置
 var empty =
 [0,0,0,
 0,0,0,
@@ -53,12 +55,13 @@ var empty =
 
 $(document).ready(function () {
 
+	//載入圖片
 	for(var i=0;i<9;i++){
 		$("#"+data[i].id).css({
 			"background-image": "url(img/"+data[i].bg+")"
 		})
 	}
-
+	//開始玩
 	$(".block").click(function () {
 		$().swap(this);
 	});
@@ -67,7 +70,7 @@ $(document).ready(function () {
 
 $.fn.swap = function(block){
 
-//現在是哪個格子
+	//現在是哪個格子
 	var block_position;
 	for(var i=0;i<9;i++){
 		if(block.id == data[i].id){
@@ -75,30 +78,22 @@ $.fn.swap = function(block){
 			break;
 		}
 	}
+	//空格子的位置
 	var empty_position = empty.indexOf(1);
-	//防呆
-	if(block_position == empty_position){
-		console.log("點空格子");
-	}
 
 	//看是不是能交換
-
-
 	if($().swapable(block_position,empty_position)){
+		//圖片交換
 		$("#"+data[empty_position].id).css({
 			"background-image": "url(img/"+data[block_position].bg+")"
 		})
 		$("#"+data[block_position].id).css({
 			"background-image": "url(img/"+data[empty_position].bg+")"
 		});
-
+		//交換資料
 		$().data_bg_swap(data[empty_position],data[block_position]);
 		$().empty_swap(empty_position,block_position);
-
 	}
-
-	//swap
-
 }
 
 $.fn.data_bg_swap = function(x,y){
@@ -112,9 +107,12 @@ $.fn.empty_swap = function(x,y){
 	empty[y] = temp;
 }
 
+//可不可以交換
 $.fn.swapable = function(block_position,empty_position){
-	block_position++; //0 -> 1
+	//0 -> 1
+	block_position++;
 	empty_position++;
+	
 	if(block_position+3 == empty_position || block_position-3 == empty_position)
 		return true;
 	if(block_position+1 == empty_position && block_position%3 != 0)
