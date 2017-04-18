@@ -13,10 +13,9 @@
 
 .img{
 	width: 400px;
-	float: right;
 }
 .info{
-	width: 400px;
-	float: right;
+	width: 100%;
+	float: left;
 	font-size: 1em;
 }
