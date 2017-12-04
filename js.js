@@ -1,57 +1,19 @@
-//資料
-var data = [
-	 {
-		bg:"0.jpg",
-		"id" : "d0",
-		position :0
-	},
-	{
-		bg:"1.jpg",
-		"id" : "d1",
-		position :1
-	},
-	{
-		bg :"2.jpg",
-		"id" : "d2",
-		position :2
-	},
-	{
-		bg :"3.jpg",
-		"id" : "d3",
-		position :3
-	},
-	{
-		bg :"4.jpg",
-		"id" : "d4",
-		position :4
-	},
-	{
-		bg :"5.jpg",
-		"id" : "d5",
-		position :5
-	},
-	{
-		bg :"6.jpg",
-		"id" : "d6",
-		position :6
-	},
-	{
-		bg :"7.jpg",
-		"id" : "d7",
-		position :7
-	},
-	{
-		bg :"9.jpg",
-		"id" : "d8",
-		position :8
-	}
-]
+var indices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+var data = shuffle(indices).map(function(d, i) {
+	return {bg: d + ".jpg", "id": "d" + i, position: i}
+});
 
 //空格的位置
+
 var empty =
 [0,0,0,
 0,0,0,
-0,0,1]
+0,0,0];
+
+var randomBlack = Math.floor(Math.random() * 9);
+data[randomBlack].bg = "9.jpg";
+empty[randomBlack] = 1;
 
 $(document).ready(function () {
 
@@ -112,7 +74,7 @@ $.fn.swapable = function(block_position,empty_position){
 	//0 -> 1
 	block_position++;
 	empty_position++;
-	
+
 	if(block_position+3 == empty_position || block_position-3 == empty_position)
 		return true;
 	if(block_position+1 == empty_position && block_position%3 != 0)
@@ -123,7 +85,17 @@ $.fn.swapable = function(block_position,empty_position){
 	return false;
 }
 
+function shuffle(array) {
+	let counter = array.length;
+	while (counter > 0) {
+			// Pick a random index
+			let index = Math.floor(Math.random() * counter);
 
+			counter--;
 
-
-
+			let temp = array[counter];
+			array[counter] = array[index];
+			array[index] = temp;
+	}
+	return array;
+}
